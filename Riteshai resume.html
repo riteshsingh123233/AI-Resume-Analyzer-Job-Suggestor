@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Resume Analyzer & Job Suggestor</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #e3f2fd, #f3e5f5);
+            min-height: 100vh;
+        }
+
+        header {
+            background: linear-gradient(90deg, #4a148c, #1976d2);
+            color: white;
+            text-align: center;
+            padding: 25px;
+        }
+
+        header h1 {
+            font-size: 32px;
+            margin-bottom: 8px;
+        }
+
+        header p {
+            font-size: 17px;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: 30px auto;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            margin-bottom: 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.12);
+        }
+
+        .card h2 {
+            color: #4a148c;
+            margin-bottom: 18px;
+        }
+
+        .upload-box {
+            border: 2px dashed #1976d2;
+            padding: 35px;
+            text-align: center;
+            border-radius: 12px;
+            background: #f5faff;
+        }
+
+        .upload-box input {
+            margin-top: 15px;
+        }
+
+        button {
+            background: linear-gradient(90deg, #7b1fa2, #1976d2);
+            color: white;
+            border: none;
+            padding: 13px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 20px;
+        }
+
+        button:hover {
+            transform: scale(1.03);
+        }
+
+        .score {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: #4caf50;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 35px;
+            font-weight: bold;
+            margin: 20px auto;
+        }
+
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .skill {
+            background: #e3f2fd;
+            color: #1565c0;
+            padding: 10px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+        }
+
+        .jobs {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 20px;
+        }
+
+        .job {
+            padding: 20px;
+            border-radius: 12px;
+            background: #fafafa;
+            border-left: 5px solid #7b1fa2;
+        }
+
+        .job h3 {
+            color: #4a148c;
+            margin-bottom: 10px;
+        }
+
+        .job p {
+            margin: 7px 0;
+        }
+
+        .match {
+            color: #2e7d32;
+            font-weight: bold;
+        }
+
+        footer {
+            text-align: center;
+            background: #212121;
+            color: white;
+            padding: 18px;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>🤖 AI Resume Analyzer</h1>
+    <p>Analyze Your Resume & Find Suitable Jobs</p>
+</header>
+
+<div class="container">
+
+    <!-- Resume Upload -->
+    <div class="card">
+        <h2>📄 Upload Your Resume</h2>
+
+        <div class="upload-box">
+            <p>Upload your resume in PDF or DOC format</p>
+
+            <input type="file" id="resumeFile" accept=".pdf,.doc,.docx">
+
+            <br>
+
+            <button onclick="analyzeResume()">
+                🔍 Analyze Resume
+            </button>
+
+            <p id="fileName"></p>
+        </div>
+    </div>
+
+
+    <!-- Resume Score -->
+    <div class="card">
+        <h2>📊 Resume Analysis</h2>
+
+        <div class="score">
+            85%
+        </div>
+
+        <p style="text-align:center;">
+            Your resume has a good match with current job requirements.
+        </p>
+    </div>
+
+
+    <!-- Skills -->
+    <div class="card">
+        <h2>💡 Detected Skills</h2>
+
+        <div class="skills">
+            <span class="skill">Python</span>
+            <span class="skill">HTML</span>
+            <span class="skill">CSS</span>
+            <span class="skill">JavaScript</span>
+            <span class="skill">SQL</span>
+            <span class="skill">Data Science</span>
+            <span class="skill">Machine Learning</span>
+        </div>
+    </div>
+
+
+    <!-- Job Suggestions -->
+    <div class="card">
+        <h2>💼 Suggested Jobs</h2>
+
+        <div class="jobs">
+
+            <div class="job">
+                <h3>🐍 Python Developer</h3>
+                <p><b>Required:</b> Python, SQL</p>
+                <p class="match">Match: 90%</p>
+                <button>View Job</button>
+            </div>
+
+            <div class="job">
+                <h3>📊 Data Analyst</h3>
+                <p><b>Required:</b> Python, SQL, Excel</p>
+                <p class="match">Match: 85%</p>
+                <button>View Job</button>
+            </div>
+
+            <div class="job">
+                <h3>🤖 ML Intern</h3>
+                <p><b>Required:</b> Python, ML</p>
+                <p class="match">Match: 80%</p>
+                <button>View Job</button>
+            </div>
+
+            <div class="job">
+                <h3>🌐 Web Developer</h3>
+                <p><b>Required:</b> HTML, CSS, JavaScript</p>
+                <p class="match">Match: 78%</p>
+                <button>View Job</button>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<footer>
+    <p>© 2026 AI Resume Analyzer & Job Suggestor</p>
+</footer>
+
+
+<script>
+    function analyzeResume() {
+
+        let file = document.getElementById("resumeFile").files[0];
+
+        if (file) {
+            document.getElementById("fileName").innerHTML =
+                "✅ Resume uploaded: " + file.name;
+
+            alert("Resume analyzed successfully!");
+        } 
+        else {
+            alert("Please upload your resume first.");
+        }
+    }
+</script>
+
+</body>
+</html>
